@@ -8,6 +8,7 @@ setup(
     author_email='viktor.granholm@scilifelab.se',
     url='https.//github.com/viktorg/granholm',
     packages=['granholm',],
+    scripts = ['scripts/getting_data.py'],
     license='GPLv3',
     long_description=open('README.txt').read(),
 )
