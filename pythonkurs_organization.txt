@@ -1,0 +1,6 @@
+I found that Wednesdays, and between 16 and 17, are the most common times 
+for commits (measured February 12).
+
+The participants of the course seem to keep to the working hours
+to quite a large extent. There are almost no commits at night, or
+in the weekend.
