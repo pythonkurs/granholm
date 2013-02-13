@@ -15,14 +15,29 @@ class repoDir(object):
 class courseRepo(object):
     '''Class to check whether all files are there'''
     def __init__(self, surname):
-        self.surname = surname
+        self._surname = surname
         self.required = ['.git',
             'setup.py',
             'README.md',
             'scripts/getting_data.py',
             'scripts/check_repo.py',
-            self.surname+'/__init__.py',
-            self.surname+'/session3.py']
+            self._surname+'/__init__.py',
+            self._surname+'/session3.py']
+
+    @property
+    def surname(self):
+        return self._surname
+
+    @surname.setter
+    def surname(self, __surname):
+        self._surname = new_surname
+        self.required = ['.git',
+            'setup.py',
+            'README.md',
+            'scripts/getting_data.py',
+            'scripts/check_repo.py',
+            __surname+'/__init__.py',
+            __surname+'/session3.py']
 
     def check(self):
         return all([os.path.exists(i) for i in self.required])
