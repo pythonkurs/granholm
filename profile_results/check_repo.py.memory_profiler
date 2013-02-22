@@ -1,0 +1,17 @@
+Filename: check_repo.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+     6                             @profile
+     7     9.484 MB     0.000 MB   def main():
+     8     9.488 MB     0.004 MB       abs_path = sys.argv[1]  # Absolute path to repository
+     9     9.488 MB     0.000 MB       surname = os.path.basename(abs_path)
+    10                             
+    11     9.492 MB     0.004 MB       with repoDir(abs_path):
+    12                                     repo = courseRepo(surname)
+    13                                     if repo.check():
+    14                                         print('PASS')
+    15                                     else:
+    16                                         print('FAIL')
+
+

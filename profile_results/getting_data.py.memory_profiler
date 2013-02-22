@@ -1,0 +1,9 @@
+Filename: getting_data.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+     5                             @profile
+     6    13.750 MB     0.000 MB   def main():
+     7    15.000 MB     1.250 MB       getting_data()
+
+
