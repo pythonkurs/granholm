@@ -1,0 +1,15 @@
+plop gives me the below error for this script, I haven't been able to solve it...
+/Viktor
+
+granholm$ python -m plop.collector scripts/check_repo.py /afs/pdc.kth.se/home/v/vgr/vol01/courses/scilifelab_python/granholm
+profile output saved to /tmp/plop.out
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/runpy.py", line 162, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "/usr/lib/python2.7/runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "/usr/local/lib/python2.7/dist-packages/plop/collector.py", line 118, in <module>
+    main()
+  File "/usr/local/lib/python2.7/dist-packages/plop/collector.py", line 112, in main
+    overhead = float(collector.sample_time) / collector.samples_taken
+ZeroDivisionError: float division by zero
