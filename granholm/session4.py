@@ -23,9 +23,10 @@ class ReadRepos(object):
         # Read Github API
         response = requests.get("https://api.github.com/orgs/pythonkurs/repos", auth=(self.username, self.password))
         repos =  json.loads(response.content)  # Couldn't get the json-method working for response, so I use the json module.
+        previous_times = {}  # Store times here to prevent duplicate values in index
         for repo in repos:
             repo_name = repo['name']
-            print repo_name,
+            print repo_name
             commit_response = requests.get("https://api.github.com/repos/pythonkurs/%s/commits" % (repo_name), auth=(self.username, self.password))
             commits = json.loads(commit_response.content)
             messages = []
@@ -33,15 +34,18 @@ class ReadRepos(object):
             # It seems, if at least one commit is made, commits has the type list
             if type(commits) == list:
                 for commit in commits:
-                    times.append(parser.parse(commit['commit']['author']['date']))
-                    messages.append(commit['commit']['message'])
+                    time = parser.parse(commit['commit']['author']['date'])
+                    message = commit['commit']['message']
+                    if time not in previous_times:  # If mutliple commits at exactly the same moment, only one is accepted
+                        times.append(time)
+                        messages.append(message)
+                    previous_times[time] = 1
                 repo_dict[repo_name] = Series(messages, index=times)
             else:
                 # No commits...
                 pass
         print ''
         self.df = DataFrame(repo_dict)
-
 
 class DataFrameOfCommits(object):
     '''Takes a dataframe of github commits, calculates most common dates etc.'''
