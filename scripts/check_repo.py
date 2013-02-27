@@ -3,8 +3,12 @@
 import sys, os
 from granholm.session3 import courseRepo, repoDir
 
+@profile
 def main():
-    abs_path = sys.argv[1]  # Absolute path to repository
+    index = 1
+    if sys.argv[index][-13:] == 'check_repo.py':
+        index += 1
+    abs_path = sys.argv[index]  # Absolute path to repository (make sure there's no trailing slash)
     surname = os.path.basename(abs_path)
 
     with repoDir(abs_path):

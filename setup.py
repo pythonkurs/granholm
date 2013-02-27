@@ -10,5 +10,5 @@ setup(
     packages=['granholm',],
     scripts = ['scripts/getting_data.py', 'scripts/check_repo.py'],
     license='GPLv3',
-    long_description=open('README.txt').read(),
+    long_description=open('README.md').read(),
 )

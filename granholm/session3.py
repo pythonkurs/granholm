@@ -41,5 +41,4 @@ class courseRepo(object):
 
     def check(self):
         return all([os.path.exists(i) for i in self.required])
-
     
