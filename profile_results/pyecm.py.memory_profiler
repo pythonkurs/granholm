@@ -1,0 +1,13 @@
+Filename: ./pyecm.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+  1474                             @profile
+  1475    12.582 MB     0.000 MB   def profile_main():
+  1476    12.590 MB     0.008 MB   	print "test"
+  1477    12.590 MB     0.000 MB   	n = int(sys.argv[-1])
+  1478    12.590 MB     0.000 MB   	ov = 2*math.log(math.log(n))
+  1479    12.605 MB     0.016 MB   	for factor in factors(n, False, False, ov, 1.0):
+  1480                             		print factor
+
+
