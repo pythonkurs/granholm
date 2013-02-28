@@ -3,7 +3,6 @@
 import sys, os
 from granholm.session3 import courseRepo, repoDir
 
-@profile
 def main():
     index = 1
     if sys.argv[index][-13:] == 'check_repo.py':
