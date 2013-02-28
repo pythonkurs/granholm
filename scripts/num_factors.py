@@ -3,6 +3,7 @@
 import sys
 from collections import Counter
 import multiprocessing as mp
+from IPython.parallel import Client
 
 def factorize(n):
     if n < 2:
@@ -44,7 +45,40 @@ def multiproc_factorization(LOW_NUM, HIGH_NUM):
     return Counter(num_unique_factors)
 
 def ipython_factorization(LOW_NUM, HIGH_NUM):
-    return 0
+    '''Parallelize using ipython'''
+    try:
+        client = Client()
+        direct_view = client[:]
+
+        @direct_view.parallel(block=True)
+        def factorize(n):
+            if n < 2:
+                return []
+            factors = []
+            p = 2
+        
+            while True:
+                if n == 1:
+                    return factors
+                r = n % p
+                if r == 0:
+                    factors.append(p)
+                    n = n / p
+                elif p * p >= n:
+                    factors.append(n)
+                    return factors
+                elif p > 2:
+                    p += 2
+                else:
+                    p += 1
+
+        num_unique_factors = []
+        all_factors = factorize.map(xrange(LOW_NUM, HIGH_NUM))
+        for factors in all_factors:
+            num_unique_factors.append(len(factors))
+        return Counter(num_unique_factors)
+    except IOError:
+        sys.exit("IOError: Make sure to run 'ipcluster start -n 4' first")
 
 def main():
     '''Factorize an integer either serially or parallel'''
@@ -60,9 +94,6 @@ def main():
         # Parallelize with IPython.parallel
         counts = ipython_factorization(LOW_NUM, HIGH_NUM)
     print dict(counts)
-
-
-
 
 if __name__ == '__main__':
     main()
